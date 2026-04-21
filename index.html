@@ -3,22 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Rawr Pojedynek: Czarny Monster - Mroczna Sieć</title>
+<title>UwU Pojedynek: Ostatni Monster - Polska Sieć</title>
 <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
 
     * { box-sizing: border-box; }
     
     body {
-        font-family: 'Space Mono', monospace;
-        /* Mroczne tło z fioletową siatką (motyw kabaretek/cyber) */
-        background-color: #0b0710;
-        background-image: 
-            linear-gradient(#1e112a 1px, transparent 1px), 
-            linear-gradient(90deg, #1e112a 1px, transparent 1px);
-        background-size: 25px 25px;
-        color: #d8b4e2;
+        font-family: 'Nunito', sans-serif;
+        /* Różowo-białe paski inspirowane słynnymi zakolanówkami */
+        background: repeating-linear-gradient(
+            45deg,
+            #ffe6f2,
+            #ffe6f2 20px,
+            #ffffff 20px,
+            #ffffff 40px
+        );
+        color: #5a3d5c;
         max-width: 800px;
         margin: 20px auto;
         padding: 20px;
@@ -26,87 +28,81 @@
     }
 
     .container {
-        background: rgba(13, 8, 20, 0.95);
-        border: 2px solid #9d4edd;
-        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 3px solid #ff9ce6;
+        border-radius: 20px;
         padding: 20px;
-        box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+        box-shadow: 0 8px 16px rgba(255, 105, 180, 0.2);
     }
 
     .donate-subtle {
         font-size: 0.8em;
-        color: #ff007f;
+        color: #ff69b4;
         text-decoration: none;
         display: block;
         text-align: right;
         margin-top: 20px;
-        opacity: 0.7;
+        opacity: 0.8;
         transition: 0.2s;
-        text-shadow: 0 0 5px rgba(255, 0, 127, 0.5);
+        font-weight: bold;
     }
     
     .donate-subtle:hover { 
-        color: #ff4da6; 
-        opacity: 1;
-        text-shadow: 0 0 10px rgba(255, 77, 166, 0.8);
+        color: #d147a3; 
+        opacity: 1; 
     }
 
-    h1 { color: #e0aaff; text-align: center; border-bottom: 1px solid #7b2cbf; padding-bottom: 10px; text-shadow: 0 0 10px #7b2cbf; }
-    h2, h3, h4 { color: #c77dff; border-bottom: 1px dashed #5a189a; padding-bottom: 10px; margin-top: 0; word-wrap: break-word; }
+    h1 { color: #ff69b4; text-align: center; border-bottom: 2px dashed #ff9ce6; padding-bottom: 10px; }
+    h2, h3, h4 { color: #ff69b4; border-bottom: 2px dashed #ff9ce6; padding-bottom: 10px; margin-top: 0; word-wrap: break-word; }
 
     .lore-box {
-        background: #100019;
-        border: 1px solid #7b2cbf;
-        border-left: 5px solid #ff007f;
+        background: #fff0f5;
+        border: 2px solid #ffb6c1;
+        border-radius: 10px;
         padding: 15px;
         margin-bottom: 20px;
         font-size: 0.95em;
         line-height: 1.5;
         text-align: center;
-        box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
     }
 
     input[type="text"], input[type="text"]:disabled {
-        background: #0b0710;
-        color: #e0aaff;
-        border: 1px solid #5a189a;
-        padding: 12px;
+        background: #fff;
+        color: #5a3d5c;
+        border: 2px solid #ffb6c1;
+        border-radius: 10px;
+        padding: 10px;
         width: 100%;
         font-family: inherit;
         margin: 5px 0;
         outline: none;
         transition: 0.3s;
     }
-    input[type="text"]:focus { border-color: #ff007f; box-shadow: 0 0 10px rgba(255, 0, 127, 0.3); }
+    input[type="text"]:focus { border-color: #ff69b4; box-shadow: 0 0 8px rgba(255, 105, 180, 0.3); }
 
     button {
-        background: transparent;
-        color: #e0aaff;
-        border: 1px solid #9d4edd;
+        background: #ffb6c1;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
         padding: 12px 15px;
         margin: 10px 5px 10px 0;
         font-family: inherit;
         font-weight: bold;
         font-size: 1em;
         cursor: pointer;
-        transition: 0.3s;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        transition: 0.2s;
+        box-shadow: 0 4px 6px rgba(255, 182, 193, 0.4);
     }
-    button:hover { 
-        background: #3c096c; 
-        color: #fff;
-        border-color: #e0aaff;
-        box-shadow: 0 0 15px rgba(157, 78, 221, 0.6); 
-    }
-    button:disabled { background: #1a1025; color: #4a3b5c; border-color: #2a1b38; cursor: not-allowed; box-shadow: none; }
+    button:hover { background: #ff9ce6; transform: translateY(-2px); }
+    button:disabled { background: #e0e0e0; color: #a0a0a0; cursor: not-allowed; box-shadow: none; transform: none; }
 
     .hidden { display: none !important; }
-    .panel { margin-top: 20px; padding: 15px; border: 1px solid #3c096c; background: rgba(0,0,0,0.5); }
-    #status { font-size: 0.9em; font-weight: bold; color: #ff007f; text-align: center; margin-bottom: 20px; letter-spacing: 2px; }
+    .panel { margin-top: 20px; padding: 15px; border: 2px solid #ff9ce6; border-radius: 15px; background: #fff; }
+    #status { font-size: 0.9em; font-weight: bold; color: #ff69b4; text-align: center; margin-bottom: 20px; word-wrap: break-word; }
     
-    .alert { background: #12081c; padding: 15px; border-left: 5px solid #9d4edd; margin-bottom: 20px; word-wrap: break-word; }
-    .error { border-left-color: #ff003c; color: #ff4d6d; }
+    .alert { background: #fff0f5; padding: 15px; border-left: 5px solid #ff69b4; border-radius: 8px; margin-bottom: 20px; word-wrap: break-word; }
+    .error { border-left-color: #ff4d4d; background: #ffe6e6; color: #cc0000; }
 
     .flex-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 
@@ -114,49 +110,40 @@
     .input-group input { flex-grow: 1; margin: 0; }
     .input-group button { margin: 0; flex-shrink: 0; white-space: nowrap; }
 
-    .timer { font-size: 1.5em; font-weight: bold; color: #ff007f; text-shadow: 0 0 8px rgba(255, 0, 127, 0.5); }
+    .timer { font-size: 1.5em; font-weight: 900; color: #ff69b4; }
 
-    #chat-history { height: 150px; overflow-y: scroll; border: 1px solid #5a189a; background: #05020a; padding: 10px; margin-bottom: 10px; word-wrap: break-word; }
+    #chat-history { height: 150px; overflow-y: scroll; border: 2px solid #ffb6c1; border-radius: 10px; background: #fff; padding: 10px; margin-bottom: 10px; word-wrap: break-word; }
     #chat-history p { margin: 4px 0; }
-    .msg-me { color: #c77dff; }
-    .msg-op { color: #ff007f; }
-    .msg-sys { color: #ff003c; font-weight: bold; }
+    .msg-me { color: #ff69b4; font-weight: bold; }
+    .msg-op { color: #8a2be2; font-weight: bold; }
+    .msg-sys { color: #ff4d4d; font-weight: 900; }
 
     .cup-option {
         display: inline-block;
-        background: #0b0710;
-        border: 1px dashed #7b2cbf;
+        background: #fff0f5;
+        border: 2px dashed #ffb6c1;
+        border-radius: 15px;
         padding: 15px;
         margin: 10px 10px 10px 0;
         cursor: pointer;
         transition: 0.3s;
         text-align: center;
-        color: #d8b4e2;
+        font-weight: bold;
+        color: #5a3d5c;
     }
-    .cup-option:hover { border-color: #e0aaff; background: #1e112a; }
-    .cup-option.selected { 
-        background: #3c096c; 
-        color: #fff; 
-        border: 1px solid #ff007f; 
-        box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); 
-    }
+    .cup-option:hover { border-color: #ff69b4; background: #ffe6f2; }
+    .cup-option.selected { background: #ff9ce6; color: #fff; border: 2px solid #ff69b4; transform: scale(1.05); }
     
-    .rank-btn { width: 100%; text-align: left; margin-bottom: 8px; border-left: 3px solid #5a189a; }
-    .rank-btn:hover { border-left-color: #ff007f; padding-left: 20px; }
+    .rank-btn { width: 100%; text-align: left; margin-bottom: 8px; background: #fdf5f6; color: #5a3d5c; border: 1px solid #ffb6c1; }
+    .rank-btn:hover { background: #ffe6f2; }
 
     .loading-dots:after { content: '.'; animation: dots 1.5s steps(5, end) infinite; }
     @keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
 
-    /* Custom Scrollbar for chat */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0b0710; }
-    ::-webkit-scrollbar-thumb { background: #5a189a; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #7b2cbf; }
-
     @media (max-width: 600px) {
         body { margin: 5px; padding: 10px; }
         .container { padding: 15px; }
-        h1 { font-size: 1.2em; }
+        h1 { font-size: 1.4em; }
         h3 { font-size: 1.1em; }
         .flex-row { flex-direction: column; align-items: flex-start; }
         .flex-row .timer { align-self: flex-end; margin-top: -35px; }
@@ -172,52 +159,52 @@
 <body>
 
 <div class="container">
-    <h1>⛓️ Ostatni Monster: Mroczny Pakt 🦇</h1>
-    <div id="status">[ INICJALIZACJA KABARETEK... ]</div>
+    <h1>🎀 Ostatni Monster: Pojedynek UwU 🎀</h1>
+    <div id="status">[ INICJALIZACJA ZAKOLANÓWEK... ]</div>
 
-    <div id="server-status" class="alert" style="border-left-color: #ff007f;">
-        Stan serwera: <span style="color:#ff007f;">NASŁUCHIWANIE W OTCHŁANI (do 60s)...</span><span class="loading-dots"></span>
+    <div id="server-status" class="alert" style="border-left-color: #8a2be2;">
+        Stan serwera: <span style="color:#8a2be2; font-weight:bold;">SPRAWDZANIE KOSZYKA W ŻABCE (do 60s)...</span><span class="loading-dots"></span>
     </div>
 
     <div id="lobby-panel" class="panel">
         <div class="lore-box">
-            <strong>📖 LORE MROCZNEGO STARCIA:</strong><br>
-            Siedzisz na kanale głosowym o 3:00 w nocy, słuchając Deftones. Została tylko jedna puszka limitowanego, Czarnego Monstera. Twój przeciwnik przyniósł Wodę Święconą (TRUCIZNĘ). Kto wypije Wodę, temu zmyje się eyeliner, zniknie mroczna aura i stanie się zwykłym normikiem. Popraw choker, napisz swój liścik i udowodnij, kto jest prawdziwym władcą ciemności. Nya~
+            <strong>📖 LORE OSTATECZNEGO STARCIA:</strong><br>
+            Znajdujesz się na sekretnym kanale polskiego Discorda. Ocalała tylko jedna puszka limitowanego Różowego Monsterka z importu. Przeciwnik przyniósł ciepłego Harnasia z puszki (TRUCIZNĘ). Tylko jeden z Was wypije pyszny nektar, drugi zostanie zmuszony wypić Harnasia i zdjąć zakolanówki. Przygotuj swój liścik, rozlej płyny i udowodnij, kto jest lepszym psychologiem! UwU
         </div>
 
         <div id="disconnect-msg" class="alert error hidden"></div>
 
-        <h3>> RYTUAŁ WEZWANIA (Szukaj w sieci)</h3>
-        <p>Wybierz ofiarę ze swojego poziomu:</p>
-        <button class="rank-btn" onclick="searchRank(1)">🦇 [ RANGA 1 ] Fani My Chemical Romance</button>
-        <button class="rank-btn" onclick="searchRank(2)">🕷️ [ RANGA 2 ] Mroczne Kociaki (Amatorzy)</button>
-        <button class="rank-btn" onclick="searchRank(3)">⛓️ [ RANGA 3 ] Nosiciele Chokerów (Doświadczeni)</button>
-        <button class="rank-btn" onclick="searchRank(4)">🖤 [ RANGA 4 ] Gotyccy Książęta Discorda</button>
+        <h3>> TRYB RANKINGOWY (Wyszukaj Kociaka)</h3>
+        <p>Wybierz kogo chcesz wyzwać z globalnej sieci:</p>
+        <button class="rank-btn" onclick="searchRank(1)">🌸 [ RANGA 1 ] Fani z Żabki (Nowicjusze)</button>
+        <button class="rank-btn" onclick="searchRank(2)">🎀 [ RANGA 2 ] Koci chłopcy (Amatorzy)</button>
+        <button class="rank-btn" onclick="searchRank(3)">💻 [ RANGA 3 ] Programiści C++ (Doświadczeni)</button>
+        <button class="rank-btn" onclick="searchRank(4)">👑 [ RANGA 4 ] Weterani Discorda (Mistrzowie)</button>
 
-        <div id="queue-status" class="alert hidden" style="color:#e0aaff; margin-top:10px; border-color: #5a189a;">
-            <span id="queue-text">Szukam innej duszy w mroku</span><span class="loading-dots"></span><br>
-            <button onclick="cancelSearch()" style="border-color:#ff003c; color:#ff003c; margin-top:10px;">[ ZERWIJ POŁĄCZENIE ]</button>
+        <div id="queue-status" class="alert hidden" style="color:#8a2be2; margin-top:10px; background: #f3e6ff; border-color: #8a2be2;">
+            <span id="queue-text">Szukam przeciwnika UwU</span><span class="loading-dots"></span><br>
+            <button onclick="cancelSearch()" style="background:#ff4d4d; margin-top:10px;">[ PRZERWIJ SZUKANIE ]</button>
         </div>
 
-        <hr style="border-color:#3c096c; border-style:dashed; margin: 20px 0;">
+        <hr style="border-color:#ff9ce6; border-style:dashed; margin: 20px 0;">
 
-        <h3>> ZAMKNIĘTA KRYPTA (Gra prywatna)</h3>
-        <button onclick="createRoom()">[ STWÓRZ KRYPTĘ ]</button>
-        <div id="host-info" class="hidden alert" style="margin: 10px 0;">
-            Twój pakt (kod): <strong id="room-id" style="font-size: 1.5em; color: #c77dff; letter-spacing: 2px;"></strong><br>Oczekuję na wejście...
+        <h3>> POKOIK PRYWATNY 💖</h3>
+        <button onclick="createRoom()">[ STWÓRZ POKOIK ]</button>
+        <div id="host-info" class="hidden alert" style="margin: 10px 0; background: #e6f2ff; border-color: #3399ff;">
+            Twój kodzik dostępu: <strong id="room-id" style="font-size: 1.5em; color: #3399ff;"></strong><br>Czekam na drugiego słodziaka...
         </div>
         <br><br>
         <div class="input-group">
-            <input type="text" id="join-id" placeholder="Wpisz kod paktu od znajomego...">
-            <button onclick="joinRoom()">[ WEJDŹ ]</button>
+            <input type="text" id="join-id" placeholder="Wpisz kodzik od znajomego owo...">
+            <button onclick="joinRoom()">[ DOŁĄCZ ]</button>
         </div>
-       <a href="https://ko-fi.com/pogromca" target="_blank" class="donate-subtle">>> wesprzyj_fundusz_na_eyeliner</a>
+       <a href="https://ko-fi.com/pogromca" target="_blank" class="donate-subtle">>> wesprzyj_serwer_na_monsterka</a>
     </div>
 
     <div id="countdown-panel" class="panel hidden" style="text-align: center;">
-        <h2 style="font-size: 2em; margin-bottom: 0; color: #ff007f;">PAKT ZAWARTY! ⛓️</h2>
-        <p>Popraw choker. Zaczynamy za:</p>
-        <div id="start-timer" style="font-size: 4em; color: #e0aaff; text-shadow: 0 0 20px #9d4edd;">5</div>
+        <h2 style="font-size: 2.5em; margin-bottom: 0;">POŁĄCZONO! 🎉</h2>
+        <p>Zakładaj zakolanówki. Runda rozpocznie się za:</p>
+        <div id="start-timer" style="font-size: 4em; color: #ff69b4; font-weight: 900;">5</div>
     </div>
 
     <div id="game-panel" class="panel hidden">
@@ -227,41 +214,41 @@
         </div>
 
         <div id="action-area">
-            <p id="question-text" style="font-size: 1.1em;">Wybierz kielich:</p>
+            <p id="question-text" style="font-size: 1.2em; font-weight: bold;">Wybierz kubeczek:</p>
             <div id="cup-options"></div>
 
-            <p style="margin-top: 15px;">Co kryje się w Twojej głowie? (Zapisz mroczną myśl):</p>
-            <input type="text" id="reason-input" placeholder="Wpisz swój mroczny tok myślenia rawr...">
+            <p style="margin-top: 15px;">Co masz w głowie? (Twój tajny liścik do przeciwnika):</p>
+            <input type="text" id="reason-input" placeholder="Wpisz swój uroczy tok myślenia UwU...">
 
             <div style="margin-top: 15px;">
-                <button id="submit-btn" onclick="submitAction()" style="width: 100%; border-color: #ff007f;">[ ZATWIERDŹ SWÓJ WYBÓR 🦇 ]</button>
-                <div id="op-status" style="color: #4a3b5c; margin-top: 10px; text-align: center; font-style: italic;">[ ] Przeciwnik stuka w czarną klawiaturę...</div>
+                <button id="submit-btn" onclick="submitAction()" style="width: 100%;">[ ZATWIERDŹ SWÓJ WYBÓR ✨ ]</button>
+                <div id="op-status" style="color: #888; margin-top: 10px; font-weight: bold; text-align: center;">[ ] Przeciwnik pisze na klawiaturze mechanicznej...</div>
             </div>
         </div>
     </div>
 
     <div id="vote-panel" class="panel hidden">
         <div class="flex-row">
-            <h3>> FAZA: KONFRONTACJA DUSZ 👁️</h3>
+            <h3>> FAZA: PLOTKOWANIE 💬</h3>
             <div class="timer">CZAS: <span id="chat-timer">180</span>s</div>
         </div>
         
-        <div id="reveal-area" class="alert" style="border-color: #ff007f;"></div>
+        <div id="reveal-area" class="alert"></div>
 
-        <h4>> SZYFROWANY KANAŁ</h4>
+        <h4>> KANAŁ DISCORD</h4>
         <div id="chat-history"></div>
         <div class="input-group">
-            <input type="text" id="chat-input" placeholder="Napisz coś zanim zapadnie wyrok...">
+            <input type="text" id="chat-input" placeholder="Napisz coś przed głosowaniem owo...">
             <button onclick="sendChat()">[ WYŚLIJ ]</button>
         </div>
 
-        <div id="voting-area" style="margin-top: 20px; background: #0b0710; padding: 15px; border: 1px solid #3c096c;">
-            <p style="text-align: center; margin-top: 0; color: #e0aaff;"><strong>Sąd Ostateczny: Czy intencje w Waszych myślach są zgodne?</strong></p>
+        <div id="voting-area" style="margin-top: 20px; background: #fff0f5; padding: 15px; border-radius: 10px; border: 1px dashed #ff9ce6;">
+            <p style="text-align: center; margin-top: 0;"><strong>Zdecyduj: Czy intencje w Waszych liścikach są takie same?</strong></p>
             <div style="display: flex; gap: 10px;">
-                <button id="vote-yes" onclick="submitVote(true)" style="flex: 1; border-color: #9d4edd;">[ TAK, JESTEŚMY TACY SAMI 🖤 ]</button>
-                <button id="vote-no" onclick="submitVote(false)" style="flex: 1; border-color: #ff003c; color: #ff4d6d;">[ NIE, TO ZWYKŁY NORMICYZM 🙅‍♂️ ]</button>
+                <button id="vote-yes" onclick="submitVote(true)" style="flex: 1; background: #ff9ce6;">[ TAK, MYŚLIMY TAK SAMO 💖 ]</button>
+                <button id="vote-no" onclick="submitVote(false)" style="flex: 1; background: #b3b3b3;">[ NIE, TO NORMICKI PODSTĘP 🙅‍♀️ ]</button>
             </div>
-            <div id="vote-wait" class="hidden" style="margin-top:10px; color:#c77dff; text-align: center;">Czekam na osąd przeciwnika...</div>
+            <div id="vote-wait" class="hidden" style="margin-top:10px; color:#8a2be2; font-weight:bold; text-align: center;">Czekam na głosik przeciwnika...</div>
         </div>
     </div>
 </div>
@@ -269,7 +256,7 @@
 <script>
     // --- KONFIGURACJA TWOJEGO SERWERA RENDER / RAILWAY ---
     const PEER_CONFIG = {
-        host: 'stinky-baka-render-server.onrender.com', // <-- TUTAJ WPISZ SWÓJ ADRES
+        host: 'stinky-baka-render-server.onrender.com', // <-- TUTAJ WPISZ SWÓJ ADRES Z RENDERA/RAILWAY (bez https://)
         port: 443,
         path: '/myapp',
         secure: true
@@ -306,16 +293,17 @@
         queueStatus: document.getElementById('queue-status'), queueText: document.getElementById('queue-text')
     };
 
-    ui.status.innerText = "[ GOTOWY NA ZROKOWANIE SIĘ W MROKU ]";
+    ui.status.innerText = "[ GOTOWY DO ZABAWY UWU ]";
 
+    // --- MATCHMAKING Z PREFIXAMI ---
     let isMatchmaking = false; 
 
     function searchRank(rank) {
         ui.disconnectMsg.classList.add('hidden');
         ui.queueStatus.classList.remove('hidden');
-        ui.queueText.innerText = `Poszukuję duszy z Rangi ${rank}`;
+        ui.queueText.innerText = `Szukam kociaka z Rangi ${rank}`;
         
-        let queueId = `trucizna_darkfemboy_rank_${rank}`;
+        let queueId = `trucizna_femboy_rank_${rank}`;
 
         if(mmPeer) mmPeer.destroy();
         mmPeer = new Peer(PEER_CONFIG);
@@ -334,7 +322,7 @@
 
             tempConn.on('open', () => {
                 clearTimeout(queueTimeout);
-                ui.queueText.innerText = `Dusza znaleziona! Splatanie połączenia... 🕸️`;
+                ui.queueText.innerText = `Znalazłem kogoś! Nawiązywanie... 💖`;
 
                 tempConn.on('data', (msg) => {
                     if(msg.type === 'MATCH_FOUND') {
@@ -357,15 +345,15 @@
 
     function becomeQueueHost(queueId) {
         if(!isMatchmaking) return;
-        ui.queueText.innerText = `Otchłań jest pusta. Otwieram własną kryptę... 🦇`;
+        ui.queueText.innerText = `Kolejka pusta. Tworzę poczekalnię na kanale, czekam... ☕`;
         
         mmPeer = new Peer(queueId, PEER_CONFIG);
         
         mmPeer.on('connection', (tempConn) => {
-            ui.queueText.innerText = `Ktoś wszedł w mrok! Zamykam drzwi... ⛓️`;
+            ui.queueText.innerText = `Ktoś wbił! Szykuję pokoik... ✨`;
             
             tempConn.on('open', () => {
-                let secretRoomId = 'dark_match_' + Math.floor(Math.random() * 999999);
+                let secretRoomId = 'uwu_match_' + Math.floor(Math.random() * 999999);
 
                 hostPrivateMatch(secretRoomId, () => {
                     tempConn.send({ type: 'MATCH_FOUND', data: secretRoomId });
@@ -389,11 +377,12 @@
         ui.queueStatus.classList.add('hidden');
     }
 
+    // --- POKOJE PRYWATNE Z PREFIXAMI ---
     function hostPrivateMatch(roomId, onReadyCallback = null) {
         isHost = true;
         if(peer) peer.destroy();
         
-        peer = new Peer('trucizna_darkpriv_' + roomId, PEER_CONFIG);
+        peer = new Peer('trucizna_uwu_priv_' + roomId, PEER_CONFIG);
 
         peer.on('open', () => {
             if(onReadyCallback) onReadyCallback();
@@ -413,7 +402,7 @@
         peer = new Peer(PEER_CONFIG);
         
         peer.on('open', () => {
-            conn = peer.connect('trucizna_darkpriv_' + roomId, { reliable: true });
+            conn = peer.connect('trucizna_uwu_priv_' + roomId, { reliable: true });
             setupConnection();
         });
     }
@@ -429,7 +418,7 @@
     function joinRoom() {
         ui.disconnectMsg.classList.add('hidden');
         let pin = document.getElementById('join-id').value.trim();
-        if(!pin) return alert("Musisz podać pakt (kod)!");
+        if(!pin) return alert("Wpisz kodzik misiu!");
         joinPrivateMatch(pin);
     }
 
@@ -445,11 +434,11 @@
         conn.on('data', (msg) => {
             if(msg.type === 'ACTION') {
                 state.opAction = msg.data;
-                ui.opStatus.innerText = "[✓] Przeciwnik wysłał swoją myśl z otchłani.";
-                ui.opStatus.style.color = "#9d4edd";
+                ui.opStatus.innerText = "[✓] Przeciwnik oddał swój liścik!";
+                ui.opStatus.style.color = "#ff69b4";
                 checkBothSubmitted();
             }
-            else if(msg.type === 'CHAT') appendChat("Obcy", msg.data, "msg-op");
+            else if(msg.type === 'CHAT') appendChat("Oponent", msg.data, "msg-op");
             else if(msg.type === 'VOTE') { state.opVote = msg.data; checkVotes(); }
             else if(msg.type === 'NEXT_ROUND') { state.round++; start5SecCountdown(); }
             else if(msg.type === 'END_GAME') endGame();
@@ -458,13 +447,13 @@
 
         conn.on('close', () => {
             if(!ui.lobby.classList.contains('hidden')) return;
-            handleKick("Połączenie przerwane. Przeciwnik wyszedł na słońce.");
+            handleKick("Połączenie zerwane. Przeciwnik uciekł pisać kod w C#.");
         });
     }
 
     function kickPlayer(reason) {
         if(conn && conn.open) {
-            conn.send({ type: 'KICK', data: "Wyrzucono za letarg (AFK)." });
+            conn.send({ type: 'KICK', data: "Wyrzucono za spanie przed klawiaturą zZz." });
             setTimeout(() => conn.close(), 500);
         }
         handleKick(reason);
@@ -473,9 +462,9 @@
     function handleKick(reason) {
         clearInterval(timerInterval); clearInterval(chatTimerInterval); hideAll();
         ui.lobby.classList.remove('hidden');
-        ui.disconnectMsg.innerText = `> SYSTEM SHOCK: ${reason}`;
+        ui.disconnectMsg.innerText = `> Ojej BŁĄD: ${reason}`;
         ui.disconnectMsg.classList.remove('hidden');
-        ui.status.innerText = "[ ROZŁĄCZONO ]";
+        ui.status.innerText = "[ OFFLINE :( ]";
         state.myScore = 0; state.opScore = 0; state.round = 1;
     }
 
@@ -501,25 +490,25 @@
 
         state.myAction = null; state.opAction = null; state.myVote = null; state.opVote = null;
         ui.reasonInput.value = ''; ui.reasonInput.disabled = false; selectedCup = null;
-        ui.submitBtn.disabled = false; ui.submitBtn.innerText = "[ ZATWIERDŹ SWÓJ WYBÓR 🦇 ]";
-        ui.opStatus.innerText = "[ ] Przeciwnik stuka w czarną klawiaturę..."; ui.opStatus.style.color = "#4a3b5c";
+        ui.submitBtn.disabled = false; ui.submitBtn.innerText = "[ ZATWIERDŹ SWÓJ WYBÓR ✨ ]";
+        ui.opStatus.innerText = "[ ] Przeciwnik pisze na klawiaturze mechanicznej..."; ui.opStatus.style.color = "#888";
         ui.voteYes.classList.remove('hidden'); ui.voteNo.classList.remove('hidden');
         ui.voteWait.classList.add('hidden'); 
 
         if(state.myRole === 'poisoner') {
-            ui.roleTitle.innerText = `> RUNDA ${state.round}/5 | NALEWASZ WODĘ ŚWIĘCONĄ ✝️`;
-            document.getElementById('question-text').innerText = "Do którego kielicha wlewasz Wodę Święconą (Truciznę)?";
+            ui.roleTitle.innerText = `> RUNDA ${state.round}/5 | NALEWASZ HARNASIA 🍺`;
+            document.getElementById('question-text').innerText = "Do którego kubeczka wlewasz okropnego Harnasia (truciznę)?";
         } else {
-            ui.roleTitle.innerText = `> RUNDA ${state.round}/5 | SIĘGASZ PO MONSTERA 🖤`;
-            document.getElementById('question-text').innerText = "Który kielich wybierasz, licząc na Czarnego Monstera?";
+            ui.roleTitle.innerText = `> RUNDA ${state.round}/5 | WYBIERASZ PUSZECZKĘ 🌸`;
+            document.getElementById('question-text').innerText = "Który kubeczek wybierasz do wypicia, licząc na Monsterka?";
         }
 
         let mySideId = isHost ? 'host_side' : 'guest_side';
         let opSideId = isHost ? 'guest_side' : 'host_side';
 
         ui.cupOptions.innerHTML = `
-            <div class="cup-option" id="cup-${mySideId}" onclick="selectCup('${mySideId}')">Kielich bliżej MNIE (Rawr)</div>
-            <div class="cup-option" id="cup-${opSideId}" onclick="selectCup('${opSideId}')">Kielich u Oponenta (Nya)</div>
+            <div class="cup-option" id="cup-${mySideId}" onclick="selectCup('${mySideId}')">Kubeczek bliżej MNIE (UwU)</div>
+            <div class="cup-option" id="cup-${opSideId}" onclick="selectCup('${opSideId}')">Kubeczek bliżej Oponenta (OwO)</div>
         `;
 
         timeLeft = 120; ui.roundTimer.innerText = timeLeft;
@@ -530,7 +519,7 @@
             if(timeLeft <= 0) {
                 clearInterval(timerInterval);
                 if(!state.myAction) {
-                    if(!selectedCup || !ui.reasonInput.value.trim()) kickPlayer("Twój czas wyciekł. Pozostał tylko pył.");
+                    if(!selectedCup || !ui.reasonInput.value.trim()) kickPlayer("Czas minął! Zasnąłeś? ;_ ;");
                     else submitAction();
                 }
             }
@@ -546,12 +535,12 @@
     }
 
     function submitAction() {
-        if(!selectedCup) return alert("Wybierz kielich, duszo!");
+        if(!selectedCup) return alert("Musisz wybrać jakiś kubeczek misiu!");
         let reason = ui.reasonInput.value.trim();
-        if(!reason) return alert("Zapisz swoją mroczną myśl!");
+        if(!reason) return alert("Musisz napisać coś na swoim liściku!");
         
         state.myAction = { cup: selectedCup, reason: reason };
-        ui.submitBtn.disabled = true; ui.submitBtn.innerText = "[ MYŚL WYSŁANA W ETER 👁️ ]";
+        ui.submitBtn.disabled = true; ui.submitBtn.innerText = "[ WYSŁANO LIŚCIK - CZEKAM 💕 ]";
         ui.reasonInput.disabled = true;
 
         conn.send({ type: 'ACTION', data: state.myAction });
@@ -577,13 +566,13 @@
         if(survived && state.myRole === 'drinker') state.myScore++;
         else if(survived && state.myRole === 'poisoner') state.opScore++;
 
-        let resHtml = `<h3>WYNIK RUNDY: ${survived ? '<span style="color:#c77dff;">CZARNY MONSTER (+1 pkt) 🦇</span>' : '<span style="color:#ff003c;">WODA ŚWIĘCONA (ZMYTY EYELINER) ✝️</span>'}</h3>`;
-        resHtml += `<p>Pozycja Wody: <strong>${getLocalCupName(pAction.cup)}</strong> | Wypito: <strong>${getLocalCupName(dAction.cup)}</strong></p><hr style="border:1px dashed #5a189a;">`;
-        resHtml += `<p><strong>Myśl Truciciela:</strong> "${pAction.reason}"</p>`;
-        resHtml += `<p><strong>Myśl Pijącego:</strong> "${dAction.reason}"</p>`;
+        let resHtml = `<h3>WYNIK RUNDY: ${survived ? '<span style="color:#ff69b4;">PYSZNY MONSTEREK (+1 pkt) 🎉</span>' : '<span style="color:#ff4d4d;">CIEPŁY HARNAŚ (PORAŻKA) 🤮</span>'}</h3>`;
+        resHtml += `<p>Pozycja Harnasia (Zło): <strong>${getLocalCupName(pAction.cup)}</strong> | Wypito: <strong>${getLocalCupName(dAction.cup)}</strong></p><hr style="border:1px dashed #ffb6c1;">`;
+        resHtml += `<p><strong>Liścik Rozlewającego:</strong> "${pAction.reason}"</p>`;
+        resHtml += `<p><strong>Liścik Pijącego:</strong> "${dAction.reason}"</p>`;
 
         ui.revealArea.innerHTML = resHtml;
-        updateStatus(); ui.voteWait.innerText = "Czekam na osąd oponenta...";
+        updateStatus(); ui.voteWait.innerText = "Czekam na głosik przeciwnika...";
         
         chatTimeLeft = 180; ui.chatTimer.innerText = chatTimeLeft;
         clearInterval(chatTimerInterval);
@@ -598,13 +587,13 @@
     }
 
     function getLocalCupName(cupId) { 
-        return cupId === (isHost ? 'host_side' : 'guest_side') ? "Kielich przy Tobie" : "Kielich u Oponenta";
+        return cupId === (isHost ? 'host_side' : 'guest_side') ? "Kubeczek bliżej Ciebie (UwU)" : "Kubeczek bliżej Przeciwnika (OwO)";
     }
 
     function sendChat() {
         let msg = ui.chatInput.value.trim();
         if(!msg) return;
-        appendChat("Ja", msg, "msg-me");
+        appendChat("Ty", msg, "msg-me");
         conn.send({ type: 'CHAT', data: msg });
         ui.chatInput.value = '';
     }
@@ -629,15 +618,15 @@
             clearInterval(chatTimerInterval); ui.chatTimer.innerText = "0";
             
             if(state.myVote === true && state.opVote === true) {
-                appendChat("SYSTEM", "MROCZNE MYŚLI SĄ ZGODNE. Dodatkowy punkt dla pijącego! 🖤", "msg-sys");
+                appendChat("SYSTEM", "LIŚCIKI MAJĄ TEN SAM VIBE! Dodatkowy punkcik dla pijącego! 💖", "msg-sys");
                 if(state.myRole === 'drinker') state.myScore++;
                 else state.opScore++;
-            } else appendChat("SYSTEM", "ZGRZYT W OTCHŁANI. Brak punktu bonusowego.", "msg-sys");
+            } else appendChat("SYSTEM", "TOTALNY BRAK ZGODY ZNACZEŃ. Runda bez bonusa :(", "msg-sys");
 
             updateStatus();
 
             let waitTime = 10;
-            ui.voteWait.innerHTML = `Wyrok zapadł. Kolejna faza mroku za <strong id="next-phase-timer" style="color:#ff007f;">${waitTime}</strong>s...`;
+            ui.voteWait.innerHTML = `Wynik zatwierdzony misiu. Następna faza za <strong id="next-phase-timer" style="color:#ff69b4;">${waitTime}</strong>s...`;
             
             let waitIv = setInterval(() => {
                 waitTime--; let el = document.getElementById('next-phase-timer');
@@ -656,16 +645,16 @@
     }
 
     function updateStatus() { 
-        ui.status.innerText = `[ STAN DUSZ ] Ty: ${state.myScore} 🦇 | Obcy: ${state.opScore} 🦇`; 
+        ui.status.innerText = `[ WYNIKI ] Ty: ${state.myScore} 🌸 | Oponent: ${state.opScore} 🌸`; 
     }
 
     function endGame() {
         hideAll(); ui.lobby.classList.remove('hidden');
-        let resHtml = `<h2>KONIEC RYTUAŁU 🕷️</h2><p>Twój mroczny wynik: ${state.myScore}</p><p>Wynik oponenta: ${state.opScore}</p>`;
+        let resHtml = `<h2>KONIEC ZABAWY 🎉</h2><p>Twój wynik: ${state.myScore}</p><p>Wynik oponenta: ${state.opScore}</p>`;
         
-        if(state.myScore > state.opScore) resHtml += "<h3 style='color:#c77dff; text-shadow: 0 0 10px #7b2cbf;'>ZWYCIĘSTWO! TWÓJ EYELINER JEST NIENARUSZONY! 🖤</h3>";
-        else if(state.myScore < state.opScore) resHtml += "<h3 style='color:#ff003c;'>PORAŻKA... Jesteś teraz normikiem i słuchasz Sanah. ✝️</h3>";
-        else resHtml += "<h3 style='color:#9d4edd'>REMIS! Podzielcie się Monsterkiem pod cmentarzem. 🦇</h3>";
+        if(state.myScore > state.opScore) resHtml += "<h3 style='color:#ff69b4'>ZWYCIĘSTWO! JESTEŚ NAJSŁODSZY! 💖</h3>";
+        else if(state.myScore < state.opScore) resHtml += "<h3 style='color:#ff4d4d'>PORAŻKA... Zostałeś normikiem ;_ ;</h3>";
+        else resHtml += "<h3 style='color:#8a2be2'>REMIS! Podzielcie się Monsterkiem! 🤝</h3>";
 
         ui.disconnectMsg.innerHTML = resHtml;
         ui.disconnectMsg.classList.remove('hidden', 'error');
@@ -677,23 +666,23 @@
         const pingPeer = new Peer(PEER_CONFIG);
         
         const timeout = setTimeout(() => {
-            statusDiv.innerHTML = 'Stan serwera: <strong style="color:#ff003c;">OFFLINE (Otchłań milczy, odśwież stronę!)</strong>';
-            statusDiv.style.borderLeftColor = '#ff003c';
+            statusDiv.innerHTML = 'Stan serwera: <strong style="color:#ff4d4d;">OFFLINE (Serwer śpi, odśwież stronkę by go obudzić!)</strong>';
+            statusDiv.style.borderLeftColor = '#ff4d4d';
             pingPeer.destroy();
         }, 60000); 
 
         pingPeer.on('open', () => {
             clearTimeout(timeout);
-            statusDiv.innerHTML = 'Stan serwera: <strong style="color:#c77dff;">ONLINE (Krypta otwarta 🦇)</strong>';
-            statusDiv.style.borderLeftColor = '#c77dff';
+            statusDiv.innerHTML = 'Stan serwera: <strong style="color:#ff69b4;">ONLINE (Gotowy do gry UwU)</strong>';
+            statusDiv.style.borderLeftColor = '#ff69b4';
             pingPeer.destroy(); 
         });
         
         pingPeer.on('error', (err) => {
             if(err.type === 'network' || err.type === 'server-error') {
                 clearTimeout(timeout);
-                statusDiv.innerHTML = 'Stan serwera: <strong style="color:#ff003c;">OFFLINE (Połączenie zerwane przez światło dzienne)</strong>';
-                statusDiv.style.borderLeftColor = '#ff003c';
+                statusDiv.innerHTML = 'Stan serwera: <strong style="color:#ff4d4d;">OFFLINE (Coś się zepsuło skarbie, sprawdź konsolę)</strong>';
+                statusDiv.style.borderLeftColor = '#ff4d4d';
             }
         });
     }
